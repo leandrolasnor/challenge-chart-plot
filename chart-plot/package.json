@@ -1,0 +1,40 @@
+{
+  "name": "chart-plot",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "admin-lte": "^2.4.8",
+    "bootstrap": "^4.2.1",
+    "chart.js": "^2.7.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "2.2.3",
+    "prismjs": "^1.16.0",
+    "react": "^16.8.5",
+    "react-chartjs-2": "^2.7.4",
+    "react-debounce-input": "^3.2.0",
+    "react-dom": "^16.8.5",
+    "react-redux": "^6.0.0",
+    "react-redux-toastr": "^7.4.5",
+    "react-scripts": "2.1.8",
+    "react-simple-code-editor": "^0.9.7",
+    "redux": "^4.0.1",
+    "redux-multi": "^0.1.12",
+    "redux-promise": "^0.6.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
