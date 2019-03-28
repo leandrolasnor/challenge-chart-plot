@@ -6,24 +6,25 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-json';
 import Grid from '../common/layout/grid'
-import {valueChange} from './actions'
+import {set_inputs} from './actions'
 import './style.css'
 
-class Code extends React.Component{
-    valueChange = (code) => {
-        this.props.valueChange(code)
-    }
+class InputJson extends React.Component{
+
     render(){
         const {editor} = this.props
         return(
             <Grid cols={this.props.cols}>
                 <Editor
-                    value={editor.code}
-                    onValueChange={code => this.valueChange(code)}
+                    value={editor.inputs}
+                    onValueChange={inputs => this.props.set_inputs(inputs)}
                     highlight={code => highlight(code, languages.json)}
                     padding={10}
                     style={{
-                        backgroundColor:"#FFF"
+                        backgroundColor:"#FFF",
+                        minHeight: '300px',
+                        marginBottom: '10px',
+                        marginTop: '10px'
                     }}
                 />
             </Grid>
@@ -31,6 +32,6 @@ class Code extends React.Component{
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({valueChange }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({set_inputs }, dispatch)
 const mapStateToProps = state => ({editor: state.editor})
-export default connect(mapStateToProps, mapDispatchToProps)(Code)
+export default connect(mapStateToProps, mapDispatchToProps)(InputJson)

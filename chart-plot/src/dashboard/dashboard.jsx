@@ -1,27 +1,21 @@
 import React from "react";
-import ContentHeader from '../common/adminLTE/contentHeader'
 import Content from '../common/adminLTE/content'
-import ChartPlot from './chart'
+import ChartPlot from '../chart/chart'
 import Row from '../common/layout/row'
-import Code from '../code/code'
+import Editor from '../editor/editor'
  
-const code = ``;
 class Dashboard extends React.Component {
-    state = { code };
     render() {
-      return (
-        <div>
-          <ContentHeader title="Leandro Lasnor" small="Challenge" />
-          <Content>
-            <Row>
-                <Code cols="12" />
-            </Row>
-            <Row>
-              <ChartPlot cols="12" />
-            </Row>
-          </Content>
-        </div>
-      );
+        return (
+            <Content>
+                <Row>
+                    <Editor cols="12" />
+                </Row>
+                <Row>
+                    <ChartPlot cols="12" />
+                </Row>
+            </Content>
+        );
     }
 }
-export default Dashboard;
+export default Dashboard
