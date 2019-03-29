@@ -17,7 +17,9 @@ class InputJson extends React.Component{
             <Grid cols={this.props.cols}>
                 <Editor
                     value={editor.inputs}
-                    onValueChange={inputs => this.props.set_inputs(inputs)}
+                    onValueChange={inputs => {
+                        if(!editor.blocked) this.props.set_inputs(inputs)
+                    }}
                     highlight={code => highlight(code, languages.json)}
                     padding={10}
                     style={{
