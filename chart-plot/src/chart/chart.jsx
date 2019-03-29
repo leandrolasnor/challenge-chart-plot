@@ -6,9 +6,9 @@ import Grid from '../common/layout/grid'
 
 
 class Chart extends React.Component{
+
     render(){
-        const {data} = this.props.chart
-        console.log(data)
+        const { data } = this.props.chart
         return(
             <Grid cols={this.props.cols}>
                 <div className="box no-border">

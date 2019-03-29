@@ -1,69 +1,112 @@
 const INITIAL_STATE = {
     data: {
         labels:[],
-        datasets: [
-            {
-                label: 'Min Response Linux Chrome',
-                data: []
-            },{
-                label: 'Min Response Linux Firefox',
-                data: []
-            },{
-                label: 'Min Response Win10 Chrome',
-                data: []
-            },{
-                label: 'Min Response Win10 Firefox',
-                data: []
-            }
-        ]
+        datasets: []
     },
-    min: [],
-    max:[]
+    events: []
 }
 
-export default function(state = INITIAL_STATE, action){
-    let data = null
+const getColor = (fat, tam) => {
+    return fat*tam+1 <= 255 ? fat*tam+1 : 255-fat*tam+1
+}
+
+const setEventDatasetChart = (datasets, event) => {
+    let newDataset = true
+    datasets = datasets.map(function (item, index) {
+        let { label } = item
+        if (label.toLowerCase().indexOf('min') >= 0) {
+            if (label.toLowerCase().indexOf(event.os) >= 0 && label.toLowerCase().indexOf(event.browser)) {
+                item.data.push(event.min_response_time)
+                newDataset = false
+            }
+        }else if (label.toLowerCase().indexOf('max') >= 0) {
+            if (label.toLowerCase().indexOf(event.os) >= 0 && label.toLowerCase().indexOf(event.browser)) {
+                item.data.push(event.max_response_time)
+                newDataset = false
+            }
+        } 
+        return item
+    })
+    if (newDataset) {
+        datasets.push({
+            label: `Min Response ${event.os} ${event.browser}`,
+            data: [event.min_response_time],
+
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: `rgba(${getColor(90,datasets.length)}, ${getColor(96,datasets.length)}, ${getColor(98,datasets.length)}, 0.1)`,
+            borderColor: `rgba(${getColor(90,datasets.length)}, ${getColor(96,datasets.length)}, ${getColor(98,datasets.length)}, 0.7)`,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: `rgba(${getColor(90,datasets.length)}, ${getColor(96,datasets.length)}, ${getColor(98,datasets.length)}, 0.7)`,
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: `rgba(${getColor(90,datasets.length)}, ${getColor(96,datasets.length)}, ${getColor(98,datasets.length)}, 0.7)`,
+            pointHoverBorderColor: `rgba(${getColor(90,datasets.length)}, ${getColor(96,datasets.length)}, ${getColor(98,datasets.length)}, 0.7)`,
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10
+
+        })
+        datasets.push({
+            label: `Max Response ${event.os} ${event.browser}`,
+            data: [event.max_response_time],
+
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: `rgba(${getColor(222,datasets.length)}, ${getColor(127,datasets.length)}, ${getColor(30,datasets.length)}, 0.1)`,
+            borderColor: `rgba(${getColor(222,datasets.length)}, ${getColor(127,datasets.length)}, ${getColor(30,datasets.length)}, 0.7)`,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: `rgba(${getColor(222,datasets.length)}, ${getColor(127,datasets.length)}, ${getColor(30,datasets.length)}, 0.7)`,
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: `rgba(${getColor(222,datasets.length)}, ${getColor(127,datasets.length)}, ${getColor(30,datasets.length)}, 0.7)`,
+            pointHoverBorderColor: `rgba(${getColor(222,datasets.length)}, ${getColor(127,datasets.length)}, ${getColor(30,datasets.length)}, 0.7)`,
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10
+
+        })
+    } 
+    return datasets
+}
+
+export default function (state = INITIAL_STATE, action) {
+    let data = state.data
     let timestamp = null
-    let min = null
-    let max = null
+    let events = state.events
     switch(action.type){
         case 'CHART_START':
-            data = INITIAL_STATE.data
             timestamp = new Date(parseInt(action.payload.timestamp)).toLocaleString()
-            data.labels.push(timestamp)
-            return {...INITIAL_STATE, data}
+            if (data.labels.filter(function (label) {return label === timestamp}).length === 0) {
+                data.labels.push(timestamp)
+            }
+            return {...state, data}
         case 'CHART_STOP':
-            return state
+            timestamp = new Date(parseInt(action.payload.timestamp)).toLocaleString()
+            if (data.labels.filter(function (label) {return label === timestamp}).length === 0) {
+                data.labels.push(timestamp)
+            }
+            return {...state, data}
         case 'CHART_SPAN':
-            //console.log(action.payload)
             return {...state}
         case 'CHART_DATA':
-            min = state.min
-            max = state.max
-            data = state.data
             timestamp = new Date(parseInt(action.payload.timestamp)).toLocaleString()
-            data.labels.push(timestamp)
-            min.push(action.payload.min_response_time)
-            max.push(action.payload.max_response_time)
-            data.datasets = data.datasets.map(function(item,index){
-                if(
-                    item.label.indexOf(action.payload.os) >= 0
-                    && item.label.indexOf(action.payload.browser) >= 0
-                    && item.label.indexOf('min') >= 0
-                ){
-                    item.data.push(action.payload.min_response_time)
-                }else if(
-                    item.label.indexOf(action.payload.os) >= 0
-                    && item.label.indexOf(action.payload.browser) >= 0
-                    && item.label.indexOf('max') >= 0
-                ){
-                    item.data.push(action.payload.max_response_time)
-                }
-                return item
-            })
-            console.log(data.datasets)
-
-            return {...state, min,max, data}
+            if (data.labels.filter(function (label) {return label === timestamp}).length === 0) {
+                data.labels.push(timestamp)
+            }
+            events.push(action.payload)
+            data.datasets = setEventDatasetChart(data.datasets, action.payload)
+            return { ...state, events, data }
+        case 'REINICIALIZE':
+            return {data: {labels:[],datasets: []},events: []}
         default:
             return state
     }

@@ -1,8 +1,10 @@
-export function set_inputs(inputs){return dispatch => {dispatch({type: 'SET_INPUTS', payload: inputs})}}
+import { toastr } from 'react-redux-toastr'
+
+export function set_inputs(inputs) { return dispatch => { dispatch({ type: 'SET_INPUTS', payload: inputs }) } }
 
 export function editor_block(){
     return dispatch => {
-        dispatch({type:'EDITOR_BLOCK'})
+        dispatch({type:'EDITOR_BLOCKED'})
     }
 }
 
@@ -26,15 +28,26 @@ export function inputs_to_dispatches(lot){
     }
 }
 
-export function  dispatch_data_charts(inputs){
+export function dispatch_data_charts(inputs) {
     return dispatch => {
         var lot = ''
-        while(inputs){
-            lot = inputs.substring(0,inputs.indexOf('}')+1)
-            var dispatches = inputs_to_dispatches(lot)
-            dispatch([...dispatches])
+        var existLineInvalid = false
+        var quantLinesInvalid = 0
+        while (inputs) {
+            lot = inputs.substring(0, inputs.indexOf('}') + 1)
+            try {
+                JSON.parse(lot)
+                var dispatches = inputs_to_dispatches(lot)
+                dispatch([...dispatches])
+            } catch{
+                existLineInvalid = true
+                quantLinesInvalid++
+            }
             inputs = inputs.replace(lot,'')
         }
-        dispatch({type: 'EDITOR_UNBLOCKED'})
+        if (existLineInvalid) {
+            toastr.warning('Opss...', `( ${quantLinesInvalid} ) invalid inputs`)
+            dispatch({type: 'EDITOR_UNBLOCKED'})
+        }
     }
 }
