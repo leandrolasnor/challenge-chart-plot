@@ -1,19 +1,217 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> 1`] = `
-<Snapshot
-  sayCheese={[Function]}
-/>
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "storeState": Object {
+        "chart": Object {
+          "data": Object {
+            "datasets": Array [],
+            "labels": Array [],
+          },
+          "executing": false,
+          "group": Array [],
+          "haveEventsPlotted": false,
+          "options": Object {
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "ticks": Object {
+                    "callback": [Function],
+                  },
+                },
+                Object {
+                  "display": true,
+                  "position": "right",
+                },
+              ],
+            },
+            "time": Object {
+              "max": 9999999999999,
+              "min": 0,
+            },
+          },
+          "select": Array [],
+          "span": Object {
+            "begin": 0,
+            "end": 9999999999999,
+          },
+        },
+        "editor": Object {
+          "blocked": false,
+          "executing": false,
+          "inputs": "{\\"type\\": \\"start\\", \\"timestamp\\": \\"1519862400000\\", \\"select\\": [\\"min_response_time\\", \\"max_response_time\\"], \\"group\\":[\\"os\\", \\"browser\\"]}
+{\\"type\\": \\"span\\", \\"timestamp\\": \\"1519862400000\\", \\"begin\\": \\"1519862400000\\", \\"end\\": \\"1519862460000\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.3\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"0.9\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.1\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.4\\"}
+{\\"type\\": \\"stop\\", \\"timestamp\\": \\"1519862460000\\"}",
+        },
+        "toastr": Object {
+          "confirm": null,
+          "toastrs": Array [],
+        },
+      },
+    }
+  }
+>
+  <Component />
+</ContextProvider>
 `;
 
 exports[`<Dashboard /> 1`] = `
-<Snapshot
-  sayCheese={[Function]}
-/>
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "storeState": Object {
+        "chart": Object {
+          "data": Object {
+            "datasets": Array [],
+            "labels": Array [],
+          },
+          "executing": false,
+          "group": Array [],
+          "haveEventsPlotted": false,
+          "options": Object {
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "ticks": Object {
+                    "callback": [Function],
+                  },
+                },
+                Object {
+                  "display": true,
+                  "position": "right",
+                },
+              ],
+            },
+            "time": Object {
+              "max": 9999999999999,
+              "min": 0,
+            },
+          },
+          "select": Array [],
+          "span": Object {
+            "begin": 0,
+            "end": 9999999999999,
+          },
+        },
+        "editor": Object {
+          "blocked": false,
+          "executing": false,
+          "inputs": "{\\"type\\": \\"start\\", \\"timestamp\\": \\"1519862400000\\", \\"select\\": [\\"min_response_time\\", \\"max_response_time\\"], \\"group\\":[\\"os\\", \\"browser\\"]}
+{\\"type\\": \\"span\\", \\"timestamp\\": \\"1519862400000\\", \\"begin\\": \\"1519862400000\\", \\"end\\": \\"1519862460000\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.3\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"0.9\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.1\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.4\\"}
+{\\"type\\": \\"stop\\", \\"timestamp\\": \\"1519862460000\\"}",
+        },
+        "toastr": Object {
+          "confirm": null,
+          "toastrs": Array [],
+        },
+      },
+    }
+  }
+>
+  <Component />
+</ContextProvider>
 `;
 
 exports[`<Editor /> 1`] = `
-<Snapshot
-  sayCheese={[Function]}
-/>
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "storeState": Object {
+        "chart": Object {
+          "data": Object {
+            "datasets": Array [],
+            "labels": Array [],
+          },
+          "executing": false,
+          "group": Array [],
+          "haveEventsPlotted": false,
+          "options": Object {
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "ticks": Object {
+                    "callback": [Function],
+                  },
+                },
+                Object {
+                  "display": true,
+                  "position": "right",
+                },
+              ],
+            },
+            "time": Object {
+              "max": 9999999999999,
+              "min": 0,
+            },
+          },
+          "select": Array [],
+          "span": Object {
+            "begin": 0,
+            "end": 9999999999999,
+          },
+        },
+        "editor": Object {
+          "blocked": false,
+          "executing": false,
+          "inputs": "{\\"type\\": \\"start\\", \\"timestamp\\": \\"1519862400000\\", \\"select\\": [\\"min_response_time\\", \\"max_response_time\\"], \\"group\\":[\\"os\\", \\"browser\\"]}
+{\\"type\\": \\"span\\", \\"timestamp\\": \\"1519862400000\\", \\"begin\\": \\"1519862400000\\", \\"end\\": \\"1519862460000\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.3\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.2\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862400000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"0.9\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"chrome\\", \\"min_response_time\\":\\"0.1\\", \\"max_response_time\\":\\"1.0\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"mac\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.2\\", \\"max_response_time\\":\\"1.1\\"}
+{\\"type\\": \\"data\\", \\"timestamp\\": \\"1519862460000\\", \\"os\\": \\"linux\\", \\"browser\\": \\"firefox\\", \\"min_response_time\\":\\"0.3\\", \\"max_response_time\\":\\"1.4\\"}
+{\\"type\\": \\"stop\\", \\"timestamp\\": \\"1519862460000\\"}",
+        },
+        "toastr": Object {
+          "confirm": null,
+          "toastrs": Array [],
+        },
+      },
+    }
+  }
+>
+  <Component />
+</ContextProvider>
 `;
