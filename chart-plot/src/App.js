@@ -57,7 +57,7 @@ class App extends Component {
     }
     return (
       <div className="wrapper">
-        <Header />
+        <Header name="Leandro Lasnor" />
         <Main>
           <div className="content-wrapper">
             <Dashboard />

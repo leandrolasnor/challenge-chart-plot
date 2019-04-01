@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 const INITIAL_STATE = {
   data: {
     labels: [],
@@ -15,7 +16,7 @@ const INITIAL_STATE = {
         },
         {
           display: true,
-          position: 'right'
+          position: "right"
         }
       ]
     },
@@ -110,7 +111,7 @@ export default function (state = INITIAL_STATE, action) {
   let timestamp = null;
   let { data } = state;
   switch (action.type) {
-    case 'START':
+    case "START":
       return {
         ...state,
         executing: true,
@@ -118,9 +119,9 @@ export default function (state = INITIAL_STATE, action) {
         select: action.payload.select,
         group: action.payload.group
       };
-    case 'STOP':
+    case "STOP":
       return { ...state, executing: false };
-    case 'CHART_SPAN':
+    case "CHART_SPAN":
       options = state.options;
       options = {
         time: {
@@ -150,6 +151,9 @@ export default function (state = INITIAL_STATE, action) {
         }).length === 0
       ) {
         data.labels.push(timestamp);
+        if (data.labels.length === 5) {
+          data.labels.splice(0, 1);
+        }
       }
       data.datasets = setEventDatasetChart(
         data.datasets,
@@ -157,9 +161,8 @@ export default function (state = INITIAL_STATE, action) {
         state.select,
         state.group
       );
-      console.log(data)
       return { ...state, data };
-    case 'REINICIALIZE':
+    case "REINICIALIZE":
       return {
         data: { labels: [], datasets: [] },
         haveEventsPlotted: false,

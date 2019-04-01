@@ -1,87 +1,71 @@
 # Plotting a chart
 
-In this challenge, you will implement a web application that plots a line chart based on some manually input data.
-
-The input data is a sequence of events. This sequence represents the output of a query, which is omitted for simplicity. The data will be manually input by the final user instead. Based on the input sequence of events, you may generate a time based line chart containing one or more series.
-
-## Definitions
-An event is a set of keys and values. For this challenge, it will be represented as a JSON. 
-
-```
-{a: 1, b: 2}
-```
-
-On our system, each event has two mandatory fields: timestamp and type. All other fields are optional.
-
-* *timestamp* field holds the moment that the event refers to. It is formatted as a regular [Javascript timestamp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)
-
-* *type* field holds the definition of what is represented on each event. Its value can be one of the following:
-
-### start
-Events of type *start* define that a new sequence of data events will follow, along with the fields that may be plotted and their grouping. A group is a category for splitting the same variable into different series.
-
-Example:
-```
-{type: 'start', timestamp: 1519780251293, select: ['min_response_time', 'max_response_time'], group: ['os', 'browser']}
-```
-In this example, for each different value of the pair (os, browser), we may plot two lines: one that represents the minimum response time, and one that represents the maximum response time. That is: if there are two different values for os and two different values for browser, we should have 8 different lines plotted.
-
-### span
-Events of type *span* define what is the visible date range for the chart. A new event of this type may make the chart update its boundaries.
-
-Example:
-```
-{type: 'span', timestamp: 1519780251293, begin: 1519780251293, end: 1519780260201}
-```
-In this example the data should be plotted inside the interval between the begin and end values, that is, the timestamps 1519780251293 and 1519780260201, respectively. All data outside this range may be ignored.
-
-### stop
-Events of type *stop* define that no more data events will follow.
-A *stop* event is generated after loading a static timespan in the past, or if the user explicitly stops the query. If the chart consumes real time data, it might never be generated.
-Any events that eventually follow a *stop* event should be ignored, except for a new *start*, which would imply the creation of a new chart.
-
-Example:
-```
-{type: 'stop', timestamp: 1519780251293}
-```
-
-### data
-Events of type *data* define the content that might be displayed on the chart.
-
-Example
-```
-{type: 'data', timestamp: 1519780251000, os: 'linux', browser: 'chrome', min_response_time: 0.1, max_response_time: 1.3}
-```
-
-> Note that absent data values for the fields defined by *select* and *group* also generate new series. On the other hand, fields that are not defined should be ignored.
-
 ## The challenge
 
-We expect you to:
+The proposed problem is to transform text into **JSON** in structured data.
+We call the already structured data of "***events***", which are read by the chart for later plotting. At the end of the process it is expected to obtain a graphic illustration of the reported data.
 
-* Provide an input on the user interface to allow plotting different sequences of events;
-* Based on an arbitrary sequence of events, plot the chart that represents the output for that sequence;
-* Follow the layout indication provided on the prototype below;
-* Write tests;
-* Suggest and implement a protection for this application to deal with huge amount of data;
-* Justify design choices, arguing about costs and benefits involved. You may write those as comments inline or, if you wish, provide a separate document summarizing those choices;
-* Write all code and documentation in english
+## Implements application
 
-![challenge_frontend](https://github.com/intelie/challenge-chart-plot/raw/master/challenge_frontend.png "Expected user interface")
+The construction of the application was based on the `"react": "^16.8.5"`, through **create-react-app**. There is no special reason that I instead choose this version. Some architecture techniques were used to order the calls of evolution of the state of the application. Redux is the key tool of this application.
+Alongside :heart:**Redux**, an array of other dependencies were included in the project with the goal of bringing the application more robust.
 
-Although you can choose any graphical library to plot the chart, we suggest that you use a declarative JS framework to build the application such as ReactJS.
+#*eslint****airbnb*** :ok_hand:
 
-## Solve this challenge
+## Dependencies
 
-To solve this challenge, you may fork this repository, then
-send us a link with your implementation. Alternatively, if you do not want to have this repo on
-your profile (we totally get it), send us a
-[git patch file](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/)
-with your changes.
+`react-simple-code-editor`
+ <sub><sup>Text box highlighting **JSON**</sup></sub>
 
-There is no unique solution to this challenge. The intent is to evaluate candidate's ability and familiarity with tools and best practices.
-
-If you are already in the hiring process, you may send it to whoever is your contact at Intelie. If you wish to apply for a job at Intelie, please send your solution to [trabalhe@intelie.com.br](mailto:trabalhe@intelie.com.br).
+`react-debounce-input`
+ <sub><sup>Box and text that delays the delivery of data waiting for the end of typing</sup></sub>
 
 
+ `react-chartjs-2`
+ <sub><sup>Graphic component set :bar_chart: :chart_with_upwards_trend: :pizza:</sup></sub>
+
+
+ `admin-lte`
+ <sub><sup>Template based on bootstrap, used in the layout of the application</sup></sub>
+
+## Workflow
+
+The application waits for the input of texts in **JSON**. After the text is entered, you can start the process of constructing the graph. The application makes a call to an editor action that structures the text and turns the events into ***dispatches***, which will be forwarded to the reducers. The gearbox connected to the chart waits for these ***dispatches*** to capture event information and evolve state. Finally, the evolution of the state in the reducer reflects on the data that is displayed in the graph. It is ugly to discard the textual data that corresponds to the event processed at that time.
+With each new event processed, the status evolves, and the graph displays more information.
+Invalid entries are not processed and will remain in the text box for investigative issue. The process begins with an event **START** and ends with an event **STOP**. You can enter part of the data at a time and then finalize the processing by entering the rest of the data. This behavior enables us to integrate this application into a real-time monitoring environment where a user or API will provide the data in real time and the graph will plot event after event.
+
+## Events
+
+***START***
+
+    {type: 'start', timestamp: 1519780251293, select: ['min_response_time', 'max_response_time'], group: ['os', 'browser']}
+
+***SPAN***
+
+    {type: 'span', timestamp: 1519780251293, begin: 1519780251293, end: 1519780260201}
+
+***DATA***
+
+    {type: 'data', timestamp: 1519780251000, os: 'linux', browser: 'chrome', min_response_time: 0.1, max_response_time: 1.3}
+
+ ***STOP***
+
+    {type: 'stop', timestamp: 1519780251293}
+
+
+
+## Performance
+
+From the data already structured, we have a volume of bytes to consider. This volume will be processed, and in the end we will have more bytes that will be stored and used by the graphical tool. In an attempt to prevent the volume of data from doubling, all text representing an event already processed and plotted on the chart will be discarded. So the volume of data will not be duplicated in the text box and graph, leaving only the already processed events shown in the chart.
+
+## Tests
+
+`jest` `enzyme` `enzyme-adapter-react-16`
+
+These dependencies were used to develop **SnapShot**.
+Where the data structure is stored and the application is marked at any given time. The test tends to fail when the test is run and the data structure and markup of the application change relative to the previous snapshot.
+
+## Design
+
+`admin-lte` template is based on bootstrap and is simple to use. I do not have great skills and knowledge in design, but I noticed that the template would fit the requirements well. Thinking about reuse, I chose this template because I already used it in other projects.
 
