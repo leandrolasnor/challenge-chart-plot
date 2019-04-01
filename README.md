@@ -69,3 +69,10 @@ Where the data structure is stored and the application is marked at any given ti
 
 `admin-lte` template is based on bootstrap and is simple to use. I do not have great skills and knowledge in design, but I noticed that the template would fit the requirements well. Thinking about reuse, I chose this template because I already used it in other projects.
 
+## Redux DevTools Chrome Extension
+
+Feel free :thumbsup:
+
+## Run in Internet Explorer
+
+I could say that it is a challenge within the other. :sweat:
