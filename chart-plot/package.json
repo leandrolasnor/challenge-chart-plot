@@ -20,7 +20,9 @@
     "redux": "^4.0.1",
     "redux-multi": "^0.1.12",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,8 +44,6 @@
     "babel-eslint": "9.0.0",
     "canvas": "^2.4.1",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
-    "enzyme-to-json": "^3.3.5",
     "eslint": "5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",

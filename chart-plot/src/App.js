@@ -9,12 +9,21 @@ import Main from "./common/adminLTE/main";
 import Footer from "./common/adminLTE/footer";
 import Messages from "./common/msg/messages";
 import Dashboard from "./dashboard/dashboard";
-import { dispatchDataCharts, editorBlock, editorUnblock } from "./editor/actions";
+import {
+  dispatchDataCharts,
+  editorBlock,
+  editorUnblock
+} from "./editor/actions";
 import reinicialize from "./chart/actions";
 
 class App extends Component {
   init = () => {
-    const { editor, dispatchDataCharts, editorBlock, editorUnblock } = this.props;
+    const {
+      editor,
+      dispatchDataCharts,
+      editorBlock,
+      editorUnblock
+    } = this.props;
     if (editor.inputs === "") {
       toastr.info("Information", "No more data to process.");
       return;
@@ -34,10 +43,12 @@ class App extends Component {
   };
 
   render() {
-    const { chart:{executing, events} } = this.props;
+    const {
+      chart: { executing, haveEventsPlotted }
+    } = this.props;
     let btnHandleClick = null;
     let btnText = null;
-    if (!executing && events.length === 0) {
+    if (!executing && !haveEventsPlotted) {
       btnHandleClick = this.init;
       btnText = "GENERATE CHART";
     } else {
