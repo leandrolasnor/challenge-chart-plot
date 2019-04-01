@@ -3,12 +3,12 @@
 ## The challenge
 
 The proposed problem is to transform text into **JSON** in structured data.
-We call the already structured data of "***events***", which are read by the chart for later plotting. At the end of the process it is expected to obtain a graphic illustration of the reported data.
+We call the already structured "***events***" data, which are read by the chart for later plotting. At the end of the process it is expected to obtain a graphic illustration of the reported data.
 
 ## Implements application
 
-The construction of the application was based on the `"react": "^16.8.5"`, through **create-react-app**. There is no special reason that I instead choose this version. Some architecture techniques were used to order the calls of evolution of the state of the application. Redux is the key tool of this application.
-Alongside :heart:**Redux**, an array of other dependencies were included in the project with the goal of bringing the application more robust.
+The construction of the application was based on `"react": "^16.8.5"`, through **create-react-app**. There was no special reason for choosing this version. Some architecture techniques were used to order the state evolution calls of the application. Redux is the key tool of this application.
+Alongside :heart:**Redux**, an array of other dependencies were included in the project with the goal of making the application more robust.
 
 #*eslint****airbnb*** :ok_hand:
 
@@ -30,9 +30,9 @@ Alongside :heart:**Redux**, an array of other dependencies were included in the 
 
 ## Workflow
 
-The application waits for the input of texts in **JSON**. After the text is entered, you can start the process of constructing the graph. The application makes a call to an editor action that structures the text and turns the events into ***dispatches***, which will be forwarded to the reducers. The gearbox connected to the chart waits for these ***dispatches*** to capture event information and evolve state. Finally, the evolution of the state in the reducer reflects on the data that is displayed in the graph. It is ugly to discard the textual data that corresponds to the event processed at that time.
+ The application waits for text input in **JSON**. After the text is entered, you can start the process of constructing the graph. The application makes a call to an editor action that structures the text and turns the events into ***dispatches***, which will be forwarded to the reducers. The gearbox connected to the chart waits for these ***dispatches*** to capture event information and evolve state. Finally, the evolution of the state in the reducer reflects on the data that is displayed in the graph. It is done to discard the textual data that corresponds to the event processed at that time.
 With each new event processed, the status evolves, and the graph displays more information.
-Invalid entries are not processed and will remain in the text box for investigative issue. The process begins with an event **START** and ends with an event **STOP**. You can enter part of the data at a time and then finalize the processing by entering the rest of the data. This behavior enables us to integrate this application into a real-time monitoring environment where a user or API will provide the data in real time and the graph will plot event after event.
+Invalid entries are not processed and will remain in the text box for investigation. The process begins with an **START** event and ends with an **STOP** event. You can enter part of the data at a time and then finalize the processing by entering the rest of the data. This behavior enables us to integrate this application into a real-time monitoring environment where a user or API will provide the data in real time and the graph will plot event after event.
 
 ## Events
 

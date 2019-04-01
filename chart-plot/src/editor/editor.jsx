@@ -35,6 +35,7 @@ class Editor extends Component {
             minHeight: "300px",
             marginBottom: "10px",
             marginTop: "10px",
+            padding: "5px",
             fontSize: "14px"
           }}
         />
